@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="../images/Icons/App Logo v2.png" type="image/x-icon">
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">    
+    <link href="https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/posts.css">
+    <link rel="stylesheet" href="../css/dropdown.css">
+
+    <title>Pixel Siege - Posts</title>
+</head>
+
+<body>
+    <header>
+        <div class="mainDiv row align-items-center">
+            <div class="col-lg-1">
+                <img src="../images/transparent logo.png" class="ps-logo" alt="Pixel Siege Logo" />
+            </div>
+            <div class="col-lg mt-1 mt-lg-0">
+                <div class="headerDiv justify-content-lg-end d-lg-flex">
+                    <a href="/" class="navSelect navAlign">Home</a>
+                    <a href="/play/" class="navSelect navAlign">Play</a>
+                    <a href="https://store.pixel-siege.com" class="navSelect navAlign goldenBtn shine" target="_blank">Store</a>
+                    <div class="ps-dropdown navAlign">
+                        <a class="ps-dropdown-toggle">More</a>
+                        <div class="ps-dropdown-menu">
+                            <a href="/posts/" class="ps-dropdown-item navSelect">Posts</a>
+                            <a href="/about/" class="ps-dropdown-item navSelect">About</a>
+                            <a href="/privacy/" class="ps-dropdown-item navSelect">Privacy Policy</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="fade-slide-up">
+        <div class="mainDiv" style="min-height: 69vh">
+            <h1>Explore Posts</h1>
+
+            <div class="row">
+                <div class="devlog-search col-xl-4 justify-content-center justify-content-xl-start ms-xl-4">
+                    <input type="text" id="devlogSearch" placeholder="Search posts">
+                </div>
+                <div class="devlog-categories col-xl justify-content-center justify-content-xl-end me-xl-4" id="pillContainer">
+                    </div>
+            </div>
+
+            <div id="postsContainer">
+                
+                <div class="clickPostDiv" style="cursor: default;">
+                    <span class="devlog-category">Limited Time</span>
+                    <span class="devlog-category devlog-category-recent">Recent</span>
+                    <h2 class="devlog-title">Free Reward - July 2025</h2>
+                    <p class="devlog-date" data-date="2025-07-08">2025-07-08</p>
+                    <div class="postPreview">
+                        <p>Use code "bhausvfduawf" in-game to unlock free limited-time rewards!</p>
+                        <p>Only available during June 2025.</p>
+                    </div>
+                </div>
+
+                <div class="clickPostDiv" style="cursor: default;">
+                    <span class="devlog-category">Development</span>
+                    <h2 class="devlog-title">Google Play Testing Program</h2>
+                    <p class="devlog-date" data-date="2025-07-29">2025-07-29</p>
+                    <div class="postPreview">
+                        <p>Pixel Siege is officially entering its testing phase on Google Play!</p>
+                        <p>That means we need your help. If you’re up for it, you can now download the game directly from Google Play and help us test it. Your feedback during this phase will help us smooth out bugs.</p>
+                        <br />
+                        <a class="purpleBtn" href="https://play.google.com/apps/testing/com.optical.pixelsiege">Become a tester</a>
+                    </div>
+                </div>
+
+                <div class="clickPostDiv" style="cursor: default;">
+                    <span class="devlog-category">Development</span>
+                    <h2 class="devlog-title">Extra Content for Those Who Want More (Soon!)</h2>
+                    <p class="devlog-date" data-date="2025-07-25">2025-07-25</p>
+                    <div class="postPreview">
+                        <p>We're working on adding optional content to Pixel Siege in the form of paid DLCs. These will include short new campaigns, new game modes, and many more troops to collect.</p>
+                        <h5>why paid content?</h5>
+                        <p>Running the game costs money, of course. Things like hosting the website and promoting the game add up.</p>
+                        <p>More info coming soon!</p>
+                    </div>
+                </div>
+
+                <div class="clickPostDiv" style="cursor: default;">
+                    <span class="devlog-category">Development</span>
+                    <h2 class="devlog-title">Are you an artist?</h2>
+                    <p class="devlog-date" data-date="2025-06-19">2025-06-19</p>
+                    <div class="postPreview">
+                        <p>Because I'd love to work with you! Please reach out to me if interested. You can find my contact information at the bottom of the page :)</p>
+                    </div>
+                </div>
+
+                <div class="clickPostDiv" style="cursor: default;">
+                    <span class="devlog-category">News</span>
+                    <h2 class="devlog-title">First Release: Beta 1.6.0</h2>
+                    <p class="devlog-date" data-date="2025-06-14">2025-06-14</p>
+                    <div class="postPreview">
+                        <p>I'm very excited to announce the first official release of Pixel Siege: Beta 1.6.0! After months of development, I finally feel confident sharing it with the world.</p>
+                        <p>Your feedback is incredibly important to me. Thanks for being part of this journey!</p>
+                    </div>
+                </div>
+
+            </div>
+
+            <p id="noPostsMessage" style="display:none; margin: 1rem 0">No posts found matching your criteria.</p>
+        </div>
+    </main>
+
+    <footer>
+        <div class="mainDiv row text-center" style="align-items:center">
+             <div class="col-12 col-md-4 order-1 order-md-2 mb-3 mb-md-0">
+                <h2 style="font-weight:bold">By Optical</h2>
+            </div>
+            <div class="col-12 col-md-4 order-2 order-md-1 d-md-flex justify-content-md-start mb-3 mb-md-0">
+                <div>
+                    <h6>External Links</h6>
+                    <div class="hover-container" onclick="copyText(this, 'https://meisoptical.itch.io/pixel-siege')" onmouseleave="resetTooltip(this)">
+                        <h5><img src="../images/Icons/itchio.png" class="icon" loading="lazy"></h5>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-4 order-3 d-md-flex justify-content-md-end">
+                <div>
+                     <h6>Contact Info</h6>
+                     <div class="hover-container" onclick="copyText(this, 'https://www.instagram.com/pixel.siege')">
+                        <h5><img src="../images/Icons/instagram.png" class="icon" loading="lazy"></h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../js/scripts.js"></script>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const posts = document.querySelectorAll('.clickPostDiv');
+            const searchInput = document.getElementById('devlogSearch');
+            const noPostsMessage = document.getElementById('noPostsMessage');
+            const pillContainer = document.getElementById('pillContainer');
+
+            let allTags = new Set();
+            posts.forEach(post => {
+                const categories = post.querySelectorAll('.devlog-category');
+                categories.forEach(cat => {
+                    const tag = cat.textContent.trim().toLowerCase();
+                    if(tag !== 'recent') allTags.add(tag); // Exclude Recent from filter pills if desired
+                });
+            });
+
+            function createPill(label, isActive = false) {
+                const span = document.createElement('span');
+                span.className = 'pill' + (isActive ? ' active' : '');
+                span.dataset.category = label;
+                span.textContent = label === 'all' ? 'All' : label.charAt(0).toUpperCase() + label.slice(1);
+                span.addEventListener('click', () => {
+                    document.querySelectorAll('.pill').forEach(p => p.classList.remove('active'));
+                    span.classList.add('active');
+                    updatePostsVisibility();
+                });
+                pillContainer.appendChild(span);
+            }
+
+            createPill('all', true);
+            Array.from(allTags).sort().forEach(tag => createPill(tag));
+
+            function updatePostsVisibility() {
+                const searchValue = searchInput.value.toLowerCase();
+                const activeCategory = document.querySelector('.pill.active')?.dataset.category || 'all';
+                let visibleCount = 0;
+
+                posts.forEach(post => {
+                    const title = post.querySelector('.devlog-title')?.textContent.toLowerCase() || '';
+                    const tags = Array.from(post.querySelectorAll('.devlog-category'))
+                        .map(el => el.textContent.trim().toLowerCase());
+
+                    const matchesSearch = title.includes(searchValue);
+                    const matchesTag = activeCategory === 'all' || tags.includes(activeCategory);
+
+                    if (matchesSearch && matchesTag) {
+                        post.style.display = 'block';
+                        visibleCount++;
+                    } else {
+                        post.style.display = 'none';
+                    }
+                });
+                noPostsMessage.style.display = visibleCount === 0 ? 'block' : 'none';
+            }
+
+            searchInput.addEventListener('input', updatePostsVisibility);
+            updatePostsVisibility();
+        });
+    </script>
+</body>
+</html>
