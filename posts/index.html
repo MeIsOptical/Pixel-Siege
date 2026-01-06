@@ -13,6 +13,12 @@
     <link rel="stylesheet" href="../css/dropdown.css">
 
     <title>Pixel Siege - Posts</title>
+    
+    <style>
+        .hidden { display: none !important; }
+        /* Ensure the preview div works with your original CSS */
+        .clickPostDiv { cursor: pointer; }
+    </style>
 </head>
 
 <body>
@@ -41,75 +47,32 @@
 
     <main class="fade-slide-up">
         <div class="mainDiv" style="min-height: 69vh">
-            <h1>Explore Posts</h1>
+            
+            <div id="postsListView">
+                <h1>Explore Posts</h1>
 
-            <div class="row">
-                <div class="devlog-search col-xl-4 justify-content-center justify-content-xl-start ms-xl-4">
-                    <input type="text" id="devlogSearch" placeholder="Search posts">
-                </div>
-                <div class="devlog-categories col-xl justify-content-center justify-content-xl-end me-xl-4" id="pillContainer">
+                <div class="row">
+                    <div class="devlog-search col-xl-4 justify-content-center justify-content-xl-start ms-xl-4">
+                        <input type="text" id="devlogSearch" placeholder="Search posts">
                     </div>
+                    <div class="devlog-categories col-xl justify-content-center justify-content-xl-end me-xl-4" id="pillContainer">
+                        </div>
+                </div>
+
+                <div id="postsContainer">
+                    </div>
+                <p id="noPostsMessage" style="display:none; margin: 1rem 0">No posts found matching your criteria.</p>
             </div>
 
-            <div id="postsContainer">
-                
-                <div class="clickPostDiv" style="cursor: default;">
-                    <span class="devlog-category">Limited Time</span>
-                    <span class="devlog-category devlog-category-recent">Recent</span>
-                    <h2 class="devlog-title">Free Reward - July 2025</h2>
-                    <p class="devlog-date" data-date="2025-07-08">2025-07-08</p>
-                    <div class="postPreview">
-                        <p>Use code "bhausvfduawf" in-game to unlock free limited-time rewards!</p>
-                        <p>Only available during June 2025.</p>
+            <div id="postDetailView" class="hidden" style="padding:1rem 0.8rem">
+                <div id="detailContent">
                     </div>
+                <br />
+                <div class="postBtnDiv">
+                    <a href="#" onclick="closePost(); return false;">Back</a>
                 </div>
-
-                <div class="clickPostDiv" style="cursor: default;">
-                    <span class="devlog-category">Development</span>
-                    <h2 class="devlog-title">Google Play Testing Program</h2>
-                    <p class="devlog-date" data-date="2025-07-29">2025-07-29</p>
-                    <div class="postPreview">
-                        <p>Pixel Siege is officially entering its testing phase on Google Play!</p>
-                        <p>That means we need your help. If you’re up for it, you can now download the game directly from Google Play and help us test it. Your feedback during this phase will help us smooth out bugs.</p>
-                        <br />
-                        <a class="purpleBtn" href="https://play.google.com/apps/testing/com.optical.pixelsiege">Become a tester</a>
-                    </div>
-                </div>
-
-                <div class="clickPostDiv" style="cursor: default;">
-                    <span class="devlog-category">Development</span>
-                    <h2 class="devlog-title">Extra Content for Those Who Want More (Soon!)</h2>
-                    <p class="devlog-date" data-date="2025-07-25">2025-07-25</p>
-                    <div class="postPreview">
-                        <p>We're working on adding optional content to Pixel Siege in the form of paid DLCs. These will include short new campaigns, new game modes, and many more troops to collect.</p>
-                        <h5>why paid content?</h5>
-                        <p>Running the game costs money, of course. Things like hosting the website and promoting the game add up.</p>
-                        <p>More info coming soon!</p>
-                    </div>
-                </div>
-
-                <div class="clickPostDiv" style="cursor: default;">
-                    <span class="devlog-category">Development</span>
-                    <h2 class="devlog-title">Are you an artist?</h2>
-                    <p class="devlog-date" data-date="2025-06-19">2025-06-19</p>
-                    <div class="postPreview">
-                        <p>Because I'd love to work with you! Please reach out to me if interested. You can find my contact information at the bottom of the page :)</p>
-                    </div>
-                </div>
-
-                <div class="clickPostDiv" style="cursor: default;">
-                    <span class="devlog-category">News</span>
-                    <h2 class="devlog-title">First Release: Beta 1.6.0</h2>
-                    <p class="devlog-date" data-date="2025-06-14">2025-06-14</p>
-                    <div class="postPreview">
-                        <p>I'm very excited to announce the first official release of Pixel Siege: Beta 1.6.0! After months of development, I finally feel confident sharing it with the world.</p>
-                        <p>Your feedback is incredibly important to me. Thanks for being part of this journey!</p>
-                    </div>
-                </div>
-
             </div>
 
-            <p id="noPostsMessage" style="display:none; margin: 1rem 0">No posts found matching your criteria.</p>
         </div>
     </main>
 
@@ -141,22 +104,107 @@
     <script src="../js/scripts.js"></script>
     
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const posts = document.querySelectorAll('.clickPostDiv');
-            const searchInput = document.getElementById('devlogSearch');
-            const noPostsMessage = document.getElementById('noPostsMessage');
-            const pillContainer = document.getElementById('pillContainer');
+        // --- 1. POSTS DATA (Full HTML Content) ---
+        const postsData = [
+            {
+                id: 'introducing-items',
+                title: `INTRODUCING: ITEMS`,
+                date: '2025-08-29',
+                tags: ['News', 'Development'],
+                isRecent: false,
+                content: `<p>We’ve been working on something that will completely change the way you play Pixel Siege: <b>Items</b>. Unlike troops, items can be collected infinitely and assigned to your troops, giving them unique boosts. From damage, health, and speed, to more utility bonuses like cooldown reduction, or even extra income, items open the door to endless new strategies!</p><br><h3>MERGING</h3> <p>Finding items is only the start. If you collect three of the same item, you’ll be able to merge them into a stronger version. This gives you the freedom to customize your favorite troops and experiment with different setups until you find the perfect combination.</p><br><p>Items are nearly ready and will be added in the next release: <b>Beta 1.7.0</b>. We can’t wait to see how you’ll use them to push Pixel Siege even further!</p>`
+            },
+            {
+                id: 'whats-next-for-pixel-siege',
+                title: `What's next for Pixel Siege?`,
+                date: '2025-08-10',
+                tags: ['Development'],
+                isRecent: false,
+                content: `<p>We have asked ourselves this very question, and here is our answer to you, the community.</p><br><h3>Continuity</h3><p>Our main focus is on the game's continuity. As of this moment, there is not much more gameplay left after completing the campaign, but we want to change that. We plan on continuously adding new original game modes for you to try, and of course, loads of new troops to unlock!</p><br><h3>DLCs</h3><p>We’re also working on adding content in the form of paid DLCs to both expand the game and help us keep Pixel Siege going. We want these to feel worth every cent, with enough content to make them a no-brainer for anyone. If you are interested and want to find out more, <a class="defaultLink" href="/posts/details/extra-content-for-those-who-want-more-soon">check out this post</a>!</p><br><h3>Collaborating with Artists</h3><p>A big part of Pixel Siege’s charm comes from its unique visuals. By collaborating with more artists, we can come up with new content a lot faster, which is exactly what we aim to do in the future. We believe people are the key to success, both players and creators alike, so if you are an artist with a talent for pixel art and want to participate in the future of Pixel Siege, we would love your help! </p>`
+            },
+            {
+                id: 'reworked-websites-posts-system',
+                title: `website's REWORKED posts system`,
+                date: '2025-08-05',
+                tags: ['Website'],
+                isRecent: false,
+                content: `<p>The way posts used to work has been completely reworked! While everything might look similar for your eyes, the website handles posts in an entirely different way behind the scene. Prior to this update, posts were hardcoded directly into the website's code. This meant that adding a new post required reuploading the entire site every time... Not great!</p><p>Now, posts are stored in a proper database, allowing them to be created, edited, and managed directly from the website! This makes the entire process a lot easier and faster.</p><p>We’re doing our best to improve Pixel Siege in every way we can, including the website. This change also opens the door for potential community-driven content, and maybe even new features around posts in the future. It’s a small change on the surface, but it sets the foundation for much more to come!</p>`
+            },
+            {
+                id: 'google-play-testing-program',
+                title: 'Google Play Testing Program',
+                date: '2025-07-29',
+                tags: ['Development'],
+                isRecent: false, 
+                content: `<p>Pixel Siege is officially entering its testing phase on Google Play!</p><p>That means we need your help. If you’re up for it, you can now download the game directly from Google Play and help us test it. Your feedback during this phase will help us fix bugs, polish the experience, and make sure the game is ready for full release.</p><br /><p>If you wish to participate, please reach out to me via Instagram or Discord. The links are at the bottom of the page under "CONTACT INFO".</p>`
+            },
+            {
+                id: 'extra-content-for-those-who-want-more-soon',
+                title: 'dlcs (Soon!)',
+                date: '2025-07-25',
+                tags: ['Development'],
+                isRecent: false,
+                content: `<p>We're working on adding optional content to Pixel Siege in the form of paid DLCs. These will include short new campaigns, new game modes, and many more troops to collect. We are actively working on designing new levels and game modes, implementing important gameplay features, and integrating 2D visuals and audio assets to make the game and upcoming DLCs as pleasant as possible for all your senses! It's still early, so we won't share too much yet, but they're definitely in the works!</p><br /><h5>why paid content?</h5><p>Running the game costs money, of course. Things like hosting the website and promoting the game add up, and paid content will help keep the project alive without affecting gameplay balance or progression.</p><p>More info coming soon!</p>`
+            },
+            {
+                id: 'are-you-an-artist',
+                title: 'Are you an artist?',
+                date: '2025-06-19',
+                tags: ['Development'],
+                isRecent: false,
+                content: `<p>Because we would love to work with you! Please reach out if interested. You can find the contact information at the bottom of the page :)</p>`
+            },
+            {
+                id: 'first-release-beta-160',
+                title: 'First Release: Beta 1.6.0',
+                date: '2025-06-14',
+                tags: ['News'],
+                isRecent: false,
+                content: `<p>We are very excited to announce the first official release of Pixel Siege: Beta 1.6.0! After months of development, we finally feel confident sharing it with the world. This version includes a variety of features, including a full campaign, multiple events to complete, and a wide range of troops to collec, from ducks to tanks to demons! It’s still quite early, but the essentials are in place and the game is ready to grow.</p><p>Your feedback is incredibly important to us, so if you give the game a try, we’d love to hear your thoughts. Thanks for being part of this journey!</p>`
+            }
+        ];
 
-            let allTags = new Set();
-            posts.forEach(post => {
-                const categories = post.querySelectorAll('.devlog-category');
-                categories.forEach(cat => {
-                    const tag = cat.textContent.trim().toLowerCase();
-                    if(tag !== 'recent') allTags.add(tag); // Exclude Recent from filter pills if desired
+        // --- 2. RENDER LIST ---
+        const container = document.getElementById('postsContainer');
+        const pillContainer = document.getElementById('pillContainer');
+        const searchInput = document.getElementById('devlogSearch');
+        const noPostsMessage = document.getElementById('noPostsMessage');
+
+        function renderList() {
+            container.innerHTML = '';
+            postsData.forEach(post => {
+                const div = document.createElement('div');
+                div.className = 'clickPostDiv'; // IMPORTANT: Matches your CSS
+                div.onclick = () => openPost(post.id);
+                
+                // Construct Tags HTML
+                let tagsHtml = '';
+                if(post.isRecent) tagsHtml += `<span class="devlog-category devlog-category-recent">Recent</span>`;
+                post.tags.forEach(tag => {
+                    tagsHtml += `<span class="devlog-category">${tag}</span>`;
                 });
+                
+                div.innerHTML = `
+                    ${tagsHtml}
+                    <h2 class="devlog-title">${post.title}</h2>
+                    <p class="devlog-date mb-2">${post.date}</p>
+                    <div class="postPreview">
+                        ${post.content}
+                    </div>
+                `;
+                container.appendChild(div);
             });
+            initFilters();
+        }
 
-            function createPill(label, isActive = false) {
+        // --- 3. FILTER LOGIC ---
+        function initFilters() {
+            let allTags = new Set();
+            postsData.forEach(p => p.tags.forEach(t => allTags.add(t.toLowerCase())));
+            
+            pillContainer.innerHTML = '';
+            
+            const createPill = (label, isActive = false) => {
                 const span = document.createElement('span');
                 span.className = 'pill' + (isActive ? ' active' : '');
                 span.dataset.category = label;
@@ -164,40 +212,90 @@
                 span.addEventListener('click', () => {
                     document.querySelectorAll('.pill').forEach(p => p.classList.remove('active'));
                     span.classList.add('active');
-                    updatePostsVisibility();
+                    filterPosts();
                 });
                 pillContainer.appendChild(span);
-            }
+            };
 
             createPill('all', true);
             Array.from(allTags).sort().forEach(tag => createPill(tag));
+            
+            searchInput.addEventListener('input', filterPosts);
+        }
 
-            function updatePostsVisibility() {
-                const searchValue = searchInput.value.toLowerCase();
-                const activeCategory = document.querySelector('.pill.active')?.dataset.category || 'all';
-                let visibleCount = 0;
+        function filterPosts() {
+            const searchValue = searchInput.value.toLowerCase();
+            const activeCategory = document.querySelector('.pill.active')?.dataset.category || 'all';
+            let visibleCount = 0;
+            
+            const postDivs = document.querySelectorAll('.clickPostDiv');
+            postDivs.forEach((div, index) => {
+                const data = postsData[index];
+                const matchSearch = data.title.toLowerCase().includes(searchValue);
+                const matchCat = activeCategory === 'all' || data.tags.some(t => t.toLowerCase() === activeCategory);
+                
+                if (matchSearch && matchCat) {
+                    div.style.display = 'block';
+                    visibleCount++;
+                } else {
+                    div.style.display = 'none';
+                }
+            });
+            noPostsMessage.style.display = visibleCount === 0 ? 'block' : 'none';
+        }
 
-                posts.forEach(post => {
-                    const title = post.querySelector('.devlog-title')?.textContent.toLowerCase() || '';
-                    const tags = Array.from(post.querySelectorAll('.devlog-category'))
-                        .map(el => el.textContent.trim().toLowerCase());
+        // --- 4. NAVIGATION LOGIC ---
+        const listView = document.getElementById('postsListView');
+        const detailView = document.getElementById('postDetailView');
+        const detailContent = document.getElementById('detailContent');
 
-                    const matchesSearch = title.includes(searchValue);
-                    const matchesTag = activeCategory === 'all' || tags.includes(activeCategory);
+        function openPost(id) {
+            const post = postsData.find(p => p.id === id);
+            if(!post) return;
 
-                    if (matchesSearch && matchesTag) {
-                        post.style.display = 'block';
-                        visibleCount++;
-                    } else {
-                        post.style.display = 'none';
-                    }
-                });
-                noPostsMessage.style.display = visibleCount === 0 ? 'block' : 'none';
+            window.location.hash = id;
+            
+            let tagsHtml = '';
+            if(post.isRecent) tagsHtml += `<span class="devlog-category devlog-category-recent">Recent</span>`;
+            post.tags.forEach(tag => {
+                tagsHtml += `<span class="devlog-category">${tag}</span>`;
+            });
+
+            detailContent.innerHTML = `
+                <div class="devlog-header">
+                    ${tagsHtml}
+                    <h2 class="devlog-title">${post.title}</h2>
+                    <p class="devlog-date">${post.date}</p>
+                </div>
+                <div class="devlog-post">
+                    ${post.content}
+                </div>
+            `;
+
+            listView.classList.add('hidden');
+            detailView.classList.remove('hidden');
+            window.scrollTo(0,0);
+        }
+
+        function closePost() {
+            history.pushState("", document.title, window.location.pathname + window.location.search);
+            listView.classList.remove('hidden');
+            detailView.classList.add('hidden');
+        }
+
+        window.addEventListener('hashchange', checkHash);
+        
+        function checkHash() {
+            const hash = window.location.hash.substring(1);
+            if(hash) {
+                if(detailView.classList.contains('hidden')) openPost(hash);
+            } else {
+                closePost();
             }
+        }
 
-            searchInput.addEventListener('input', updatePostsVisibility);
-            updatePostsVisibility();
-        });
+        renderList();
+        checkHash();
     </script>
 </body>
 </html>
